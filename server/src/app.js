@@ -30,6 +30,10 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+  res.json({ message: "FitTrack Pro API is running successfully!" });
+});
+
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
