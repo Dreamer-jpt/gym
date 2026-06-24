@@ -16,9 +16,13 @@ const analyticsRoutes = require("./routes/analyticsRoutes");
 const app = express();
 
 app.use(helmet());
+const corsOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(",").map((s) => s.trim())
+  : [process.env.CLIENT_URL || "http://localhost:5173"];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: corsOrigins,
     credentials: true,
   })
 );
